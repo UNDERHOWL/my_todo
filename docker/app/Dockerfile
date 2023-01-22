@@ -9,6 +9,9 @@ RUN apt-get update && \
 RUN pecl install xdebug-3.2.0 && \
     docker-php-ext-enable xdebug
 
+RUN curl -fsSL https://deb.nodesource.com/setup_19.x | bash - &&\
+    apt-get install -y nodejs
+
 COPY ./docker/app/php.ini /usr/local/etc/php/php.ini
 
 COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
